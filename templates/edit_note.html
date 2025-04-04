@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Edit Note</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ note.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Note Type</label>
+                        <select class="form-select" id="type" name="type" required>
+                            <option value="long" {% if note.type == 'long' %}selected{% endif %}>Long Note</option>
+                            <option value="short" {% if note.type == 'short' %}selected{% endif %}>Short Note</option>
+                            <option value="sticky" {% if note.type == 'sticky' %}selected{% endif %}>Sticky Note</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" name="content" rows="10" required>{{ note.content }}</textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
